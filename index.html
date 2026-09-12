@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IIT JAM 2027 Physics Syllabus Tracker - Complete syllabus with progress tracking">
+    <meta name="theme-color" content="#482EE3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JAM Physics">
+    <link rel="manifest" href="/JAM-PH-PROGRESS-TRACKER/manifest.json">
+    
+    <!-- Atom Icon Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23482EE3' width='100' height='100' rx='15'/><circle cx='50' cy='35' r='8' fill='white'/><path d='M50 45 Q40 55 35 70 M50 45 Q60 55 65 70' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/><circle cx='35' cy='85' r='4' fill='white'/><circle cx='65' cy='85' r='4' fill='white'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23482EE3' width='192' height='192' rx='45'/><circle cx='96' cy='70' r='16' fill='white'/><path d='M96 90 Q76 110 70 140 M96 90 Q116 110 122 140' stroke='white' stroke-width='4' fill='none' stroke-linecap='round'/><circle cx='70' cy='170' r='8' fill='white'/><circle cx='122' cy='170' r='8' fill='white'/></svg>">
+    <title>IIT JAM 2027 Physics - Syllabus Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-purple: #482EE3;
+            --vibrant-purple: #6A3FC7;
+            --rich-magenta: #A51E5D;
+            --vibrant-orange: #F05A16;
+            --golden-yellow: #F9B900;
+            --warm-gold: #F5C542;
+            --bg-light: #FAFAFA;
+            --text-dark: #1a1a2e;
+            --text-light: #666;
+            --border-light: #e8e8e8;
+            --success: #10b981;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: white;
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--vibrant-purple) 100%);
+            color: white;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header .tagline {
+            font-size: 12px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* NAVIGATION TABS */
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            flex-shrink: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-tabs button {
+            flex: 1;
+            min-width: 100px;
+            padding: 14px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-tabs button.active {
+            color: var(--deep-purple);
+            border-bottom-color: var(--deep-purple);
+        }
+
+        .nav-tabs button:hover {
+            color: var(--vibrant-purple);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* DASHBOARD VIEW */
+        .dashboard-content {
+            padding: 20px 16px;
+        }
+
+        .progress-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .progress-stat:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .progress-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--deep-purple);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--border-light);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--vibrant-purple), var(--deep-purple));
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .section-mini-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .section-mini-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--deep-purple);
+        }
+
+        .section-mini-card-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--deep-purple);
+            margin-bottom: 4px;
+        }
+
+        .section-mini-card-name {
+            font-size: 12px;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .section-mini-card-progress {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .section-mini-card-bar {
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .section-mini-card-bar-fill {
+            height: 100%;
+            background: var(--deep-purple);
+            transition: width 0.3s ease;
+        }
+
+        /* SYLLABUS VIEW */
+        .syllabus-content {
+            padding: 16px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            background: white;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            border-color: var(--deep-purple);
+            color: var(--deep-purple);
+        }
+
+        .btn.active {
+            background: var(--deep-purple);
+            color: white;
+            border-color: var(--deep-purple);
+        }
+
+        .search-box {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--deep-purple);
+            box-shadow: 0 0 0 3px rgba(72, 46, 227, 0.1);
+        }
+
+        .sections-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .section-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            cursor: pointer;
+            user-select: none;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .section-card.expanded .section-header {
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section-header:hover {
+            background: var(--bg-light);
+        }
+
+        .section-info {
+            flex: 1;
+        }
+
+        .section-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-purple);
+            margin-bottom: 2px;
+        }
+
+        .section-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .section-stats {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .section-progress-bar {
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 2px;
+            overflow: hidden;
+            width: 60px;
+        }
+
+        .section-progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--vibrant-purple), var(--deep-purple));
+            transition: width 0.3s ease;
+        }
+
+        .section-chevron {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            transition: var(--transition);
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+
+        .section-card.expanded .section-chevron {
+            transform: rotate(180deg);
+            color: var(--deep-purple);
+        }
+
+        .section-topics {
+            display: none;
+            padding: 16px;
+            background: white;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .section-card.expanded .section-topics {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-item.completed .topic-label {
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .topic-checkbox {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--deep-purple);
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid var(--border-light);
+            border-radius: 4px;
+            background: white;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .topic-checkbox:hover {
+            border-color: var(--deep-purple);
+        }
+
+        .topic-checkbox:checked {
+            background: var(--deep-purple);
+            border-color: var(--deep-purple);
+        }
+
+        .topic-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .topic-checkbox:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(72, 46, 227, 0.2);
+        }
+
+        .topic-label {
+            flex: 1;
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+            user-select: none;
+            line-height: 1.4;
+        }
+
+        .search-results-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+
+        .search-results-empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* PROGRESS VIEW */
+        .progress-content {
+            padding: 20px 16px;
+        }
+
+        .progress-section {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .progress-section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .progress-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-item-count {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .progress-item-count strong {
+            color: var(--deep-purple);
+            font-weight: 600;
+        }
+
+        /* RESET BUTTON */
+        .reset-section {
+            margin-top: 20px;
+        }
+
+        .reset-button {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 2px solid #ef4444;
+            color: #ef4444;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .reset-button:hover {
+            background: #fef2f2;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .modal-message {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .modal-btn-cancel {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .modal-btn-cancel:hover {
+            background: #e8e8e8;
+        }
+
+        .modal-btn-confirm {
+            background: #ef4444;
+            color: white;
+        }
+
+        .modal-btn-confirm:hover {
+            background: #dc2626;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .header .subtitle {
+                font-size: 20px;
+            }
+
+            .section-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+
+            .section-header {
+                padding: 14px;
+            }
+
+            .controls {
+                gap: 6px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .nav-tabs button {
+                font-size: 12px;
+                padding: 12px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header {
+                padding: 16px 12px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .nav-tabs, .controls, .search-box, .reset-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>IIT JAM 2027</h1>
+        <div class="subtitle">PHYSICS (PH)</div>
+        <div style="margin-top: 12px; font-size: 11px; letter-spacing: 1.5px;">SYLLABUS TRACKER</div>
+        <div class="tagline" style="margin-top: 8px;">PLAN • PREPARE • PRACTICE • PERFORM</div>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+        <button class="nav-btn" data-view="syllabus">Syllabus</button>
+        <button class="nav-btn" data-view="progress">Progress</button>
+    </div>
+
+    <div class="container">
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard" class="view active">
+            <div class="dashboard-content">
+                <div class="progress-card">
+                    <div class="progress-stat">
+                        <span class="progress-stat-label">Overall Progress</span>
+                        <span class="progress-stat-value"><span id="completed-count">0</span>/<span id="total-count">124</span></span>
+                    </div>
+                    <div class="progress-stat">
+                        <span class="progress-stat-label">Completion Rate</span>
+                        <span class="progress-stat-value"><span id="progress-percentage">0</span>%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="main-progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-stat">
+                        <span class="progress-stat-label">Sections Completed</span>
+                        <span class="progress-stat-value"><span id="completed-sections">0</span>/7</span>
+                    </div>
+                    <div class="progress-stat">
+                        <span class="progress-stat-label">Remaining Topics</span>
+                        <span class="progress-stat-value"><span id="remaining-topics">124</span></span>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 14px; font-weight: 600; margin: 20px 0 12px; color: var(--text-dark);">Section Overview</h3>
+                <div class="section-grid" id="dashboard-sections"></div>
+            </div>
+        </div>
+
+        <!-- SYLLABUS VIEW -->
+        <div id="syllabus" class="view">
+            <div class="syllabus-content">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search syllabus topics…" aria-label="Search topics">
+                </div>
+
+                <div class="controls">
+                    <button class="btn active" data-filter="all">All Topics</button>
+                    <button class="btn" data-filter="completed">Completed</button>
+                    <button class="btn" data-filter="pending">Pending</button>
+                    <button class="btn" id="expand-all-btn">Expand All</button>
+                    <button class="btn" id="collapse-all-btn">Collapse All</button>
+                </div>
+
+                <div id="sections-container" class="sections-container"></div>
+                <div id="search-empty" class="search-results-empty" style="display: none;">
+                    <div class="search-results-empty-icon">🔍</div>
+                    <p>No topics found</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRESS VIEW -->
+        <div id="progress" class="view">
+            <div class="progress-content">
+                <div class="progress-section">
+                    <div class="progress-section-title">Overall Progress</div>
+                    <div class="progress-item">
+                        <span>Topics Completed</span>
+                        <span class="progress-item-count"><strong id="prog-completed">0</strong> / 124</span>
+                    </div>
+                    <div class="progress-item">
+                        <span>Completion Percentage</span>
+                        <span class="progress-item-count"><strong id="prog-percentage">0</strong>%</span>
+                    </div>
+                </div>
+
+                <div class="progress-section" id="progress-sections"></div>
+
+                <div class="reset-section">
+                    <button class="reset-button" id="reset-btn">Reset All Progress</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESET MODAL -->
+    <div id="reset-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Reset Progress?</div>
+            <div class="modal-message">Are you sure you want to reset all IIT JAM 2027 Physics progress? This cannot be undone.</div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="modal-cancel">Cancel</button>
+                <button class="modal-btn modal-btn-confirm" id="modal-confirm">Reset All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // SYLLABUS DATA - Exactly as provided, all 124 topics
+        // ============================================
+        const SYLLABUS_DATA = [
+            {
+                id: 1,
+                name: "Mathematical Methods",
+                topics: [
+                    { id: "s1_t1", name: "Calculus of single and multiple variables" },
+                    { id: "s1_t2", name: "Partial derivatives" },
+                    { id: "s1_t3", name: "Jacobian" },
+                    { id: "s1_t4", name: "Imperfect and perfect differentials" },
+                    { id: "s1_t5", name: "Taylor expansion" },
+                    { id: "s1_t6", name: "Fourier series" },
+                    { id: "s1_t7", name: "Vector algebra" },
+                    { id: "s1_t8", name: "Vector Calculus" },
+                    { id: "s1_t9", name: "Multiple integrals" },
+                    { id: "s1_t10", name: "Divergence theorem" },
+                    { id: "s1_t11", name: "Green's theorem" },
+                    { id: "s1_t12", name: "Stokes' theorem" },
+                    { id: "s1_t13", name: "First order equations and linear second-order differential equations with constant coefficients" },
+                    { id: "s1_t14", name: "Matrices and determinants" },
+                    { id: "s1_t15", name: "Complex numbers" },
+                    { id: "s1_t16", name: "Error analysis of Experimental Data: Significant digits and rounding of numbers, Types of errors, mean, median, standard deviation" }
+                ]
+            },
+            {
+                id: 2,
+                name: "Mechanics and General Properties of Matter",
+                topics: [
+                    { id: "s2_t1", name: "Newton's laws of motion and applications" },
+                    { id: "s2_t2", name: "Velocity and acceleration in Cartesian, polar and cylindrical coordinate systems" },
+                    { id: "s2_t3", name: "Uniformly rotating frame, centrifugal and Coriolis forces" },
+                    { id: "s2_t4", name: "Motion under a central force" },
+                    { id: "s2_t5", name: "Kepler's laws" },
+                    { id: "s2_t6", name: "Gravitational Law and field" },
+                    { id: "s2_t7", name: "Conservative and nonconservative forces" },
+                    { id: "s2_t8", name: "System of particles" },
+                    { id: "s2_t9", name: "Center of mass, equation of motion of the CM" },
+                    { id: "s2_t10", name: "Conservation of linear and angular momentum" },
+                    { id: "s2_t11", name: "Conservation of energy, variable mass systems" },
+                    { id: "s2_t12", name: "Elastic and inelastic collisions" },
+                    { id: "s2_t13", name: "Rigid body motion, fixed axis rotations" },
+                    { id: "s2_t14", name: "Rotation and translation" },
+                    { id: "s2_t15", name: "Moments of Inertia and products of Inertia" },
+                    { id: "s2_t16", name: "Parallel and perpendicular axes theorem" },
+                    { id: "s2_t17", name: "Principal moments and axes" },
+                    { id: "s2_t18", name: "Kinematics of moving fluids, equation of continuity, Euler's equation, Bernoulli's theorem" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Oscillations, Waves and Optics",
+                topics: [
+                    { id: "s3_t1", name: "Differential equation for simple harmonic oscillator and its general solution" },
+                    { id: "s3_t2", name: "Superposition of two or more simple harmonic oscillators" },
+                    { id: "s3_t3", name: "Lissajous figures" },
+                    { id: "s3_t4", name: "Damped and forced oscillations, resonance" },
+                    { id: "s3_t5", name: "Wave equation, traveling and standing waves in one dimension" },
+                    { id: "s3_t6", name: "Energy density and energy transmission in waves" },
+                    { id: "s3_t7", name: "Group velocity and phase velocity" },
+                    { id: "s3_t8", name: "Sound waves in media" },
+                    { id: "s3_t9", name: "Doppler Effect" },
+                    { id: "s3_t10", name: "Fermat's Principle" },
+                    { id: "s3_t11", name: "General theory of image formation" },
+                    { id: "s3_t12", name: "Interference of light, optical path retardation" },
+                    { id: "s3_t13", name: "Fraunhofer diffraction" },
+                    { id: "s3_t14", name: "Rayleigh criterion and resolving power" },
+                    { id: "s3_t15", name: "Diffraction gratings" },
+                    { id: "s3_t16", name: "Polarization: linear, circular and elliptic polarization" },
+                    { id: "s3_t17", name: "Double refraction and optical rotation" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Electricity and Magnetism",
+                topics: [
+                    { id: "s4_t1", name: "Coulomb's law" },
+                    { id: "s4_t2", name: "Electric field and potential" },
+                    { id: "s4_t3", name: "Gauss's law" },
+                    { id: "s4_t4", name: "Electrostatic boundary conditions" },
+                    { id: "s4_t5", name: "Solution of Laplace's equation for simple cases – upto two dimensions" },
+                    { id: "s4_t6", name: "Conductors, capacitors" },
+                    { id: "s4_t7", name: "Linear dielectrics, dielectric polarization" },
+                    { id: "s4_t8", name: "Volume and surface bound charges" },
+                    { id: "s4_t9", name: "Electrostatic energy" },
+                    { id: "s4_t10", name: "Biot-Savart law, Ampere's law" },
+                    { id: "s4_t11", name: "Faraday's law of electromagnetic induction" },
+                    { id: "s4_t12", name: "Self and mutual inductance" },
+                    { id: "s4_t13", name: "Alternating currents" },
+                    { id: "s4_t14", name: "Simple DC and AC circuits with R, L and C components" },
+                    { id: "s4_t15", name: "Displacement current" },
+                    { id: "s4_t16", name: "Maxwell's equations and plane electromagnetic waves" },
+                    { id: "s4_t17", name: "Poynting vector, Poynting's theorem" },
+                    { id: "s4_t18", name: "Energy of Electromagnetic fields" },
+                    { id: "s4_t19", name: "Reflection and refraction at a dielectric interface, transmission and reflection coefficients (normal incidence only)" },
+                    { id: "s4_t20", name: "Lorentz Force and motion of charged particles in electric and magnetic fields" }
+                ]
+            },
+            {
+                id: 5,
+                name: "Kinetic Theory, Thermodynamics",
+                topics: [
+                    { id: "s5_t1", name: "Elements of Kinetic theory of gases" },
+                    { id: "s5_t2", name: "Velocity distribution and Equipartition of energy" },
+                    { id: "s5_t3", name: "Specific heat of Mono-, di- and tri-atomic gases" },
+                    { id: "s5_t4", name: "Ideal gas, van-der-Waals gas and equation of state" },
+                    { id: "s5_t5", name: "Mean free path" },
+                    { id: "s5_t6", name: "Laws of thermodynamics" },
+                    { id: "s5_t7", name: "Zeroth law and concept of thermal equilibrium" },
+                    { id: "s5_t8", name: "First law and its consequences" },
+                    { id: "s5_t9", name: "Isothermal and adiabatic processes" },
+                    { id: "s5_t10", name: "Reversible, irreversible and quasi-static processes" },
+                    { id: "s5_t11", name: "Second law and entropy" },
+                    { id: "s5_t12", name: "Carnot cycle" },
+                    { id: "s5_t13", name: "Maxwell's thermodynamic relations and simple applications" },
+                    { id: "s5_t14", name: "Thermodynamic potentials and their applications" },
+                    { id: "s5_t15", name: "Phase transitions and Clausius-Clapeyron equation" },
+                    { id: "s5_t16", name: "Ideas of ensembles, Maxwell-Boltzmann, Fermi-Dirac and Bose-Einstein distributions" }
+                ]
+            },
+            {
+                id: 6,
+                name: "Modern Physics",
+                topics: [
+                    { id: "s6_t1", name: "Inertial frames and Galilean invariance" },
+                    { id: "s6_t2", name: "Postulates of special relativity" },
+                    { id: "s6_t3", name: "Lorentz transformations" },
+                    { id: "s6_t4", name: "Length contraction, time dilation" },
+                    { id: "s6_t5", name: "Relativistic velocity addition theorem" },
+                    { id: "s6_t6", name: "Mass energy equivalence" },
+                    { id: "s6_t7", name: "Blackbody radiation, photoelectric effect, Compton effect" },
+                    { id: "s6_t8", name: "Bohr's atomic model, X-rays" },
+                    { id: "s6_t9", name: "Wave-particle duality" },
+                    { id: "s6_t10", name: "Uncertainty principle" },
+                    { id: "s6_t11", name: "The superposition principle" },
+                    { id: "s6_t12", name: "Calculation of expectation values" },
+                    { id: "s6_t13", name: "Schrödinger equation and its solution for one, two and three dimensional boxes" },
+                    { id: "s6_t14", name: "Solution of Schrödinger equation for the one dimensional harmonic oscillator" },
+                    { id: "s6_t15", name: "Reflection and transmission at a step potential" },
+                    { id: "s6_t16", name: "Pauli exclusion principle" },
+                    { id: "s6_t17", name: "Structure of atomic nucleus, mass and binding energy" },
+                    { id: "s6_t18", name: "Radioactivity and its applications" },
+                    { id: "s6_t19", name: "Laws of radioactive decay" }
+                ]
+            },
+            {
+                id: 7,
+                name: "Solid State Physics, Devices and Electronics",
+                topics: [
+                    { id: "s7_t1", name: "Crystal structure, Bravais lattices and basis" },
+                    { id: "s7_t2", name: "Miller indices" },
+                    { id: "s7_t3", name: "X-ray diffraction and Bragg's law" },
+                    { id: "s7_t4", name: "Intrinsic and extrinsic semiconductors, variation of resistivity with temperature" },
+                    { id: "s7_t5", name: "Fermi level" },
+                    { id: "s7_t6", name: "p-n junction diode, I-V characteristics" },
+                    { id: "s7_t7", name: "Zener diode and its applications" },
+                    { id: "s7_t8", name: "BJT: characteristics in CB, CE, CC modes" },
+                    { id: "s7_t9", name: "Single stage amplifier" },
+                    { id: "s7_t10", name: "Two stage R-C coupled amplifiers" },
+                    { id: "s7_t11", name: "Simple Oscillators: Barkhausen condition, sinusoidal oscillators" },
+                    { id: "s7_t12", name: "OP-AMP and applications: Inverting and non-inverting amplifier" },
+                    { id: "s7_t13", name: "Boolean algebra" },
+                    { id: "s7_t14", name: "Binary number systems; conversion from one system to another system" },
+                    { id: "s7_t15", name: "Binary addition and subtraction" },
+                    { id: "s7_t16", name: "Logic Gates AND, OR, NOT, NAND, NOR exclusive OR" },
+                    { id: "s7_t17", name: "Truth tables; combination of gates" },
+                    { id: "s7_t18", name: "de Morgan's theorem" }
+                ]
+            }
+        ];
+
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        const STORAGE_KEY = 'jam_physics_progress';
+        let completedTopics = new Set();
+        let currentFilter = 'all';
+        let currentSearchQuery = '';
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    completedTopics = new Set(JSON.parse(saved));
+                } catch (e) {
+                    console.error('Error loading progress:', e);
+                    completedTopics = new Set();
+                }
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(completedTopics)));
+        }
+
+        // ============================================
+        // STATISTICS
+        // ============================================
+        function getStats() {
+            const totalTopics = SYLLABUS_DATA.reduce((sum, s) => sum + s.topics.length, 0);
+            const completedCount = completedTopics.size;
+            const percentage = totalTopics > 0 ? Math.round((completedCount / totalTopics) * 100) : 0;
+
+            return {
+                total: totalTopics,
+                completed: completedCount,
+                remaining: totalTopics - completedCount,
+                percentage,
+                completedSections: SYLLABUS_DATA.filter(s => 
+                    s.topics.every(t => completedTopics.has(t.id))
+                ).length
+            };
+        }
+
+        function getSectionStats(section) {
+            const total = section.topics.length;
+            const completed = section.topics.filter(t => completedTopics.has(t.id)).length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            return { total, completed, percentage };
+        }
+
+        // ============================================
+        // UI UPDATES
+        // ============================================
+        function updateAllProgress() {
+            const stats = getStats();
+
+            // Dashboard
+            document.getElementById('completed-count').textContent = stats.completed;
+            document.getElementById('total-count').textContent = stats.total;
+            document.getElementById('progress-percentage').textContent = stats.percentage;
+            document.getElementById('main-progress-bar').style.width = stats.percentage + '%';
+            document.getElementById('completed-sections').textContent = stats.completedSections;
+            document.getElementById('remaining-topics').textContent = stats.remaining;
+
+            // Progress View
+            document.getElementById('prog-completed').textContent = stats.completed;
+            document.getElementById('prog-percentage').textContent = stats.percentage;
+
+            // Update each section card in dashboard
+            SYLLABUS_DATA.forEach(section => {
+                const sectionStats = getSectionStats(section);
+                const card = document.querySelector(`[data-section-id="${section.id}"]`);
+                if (card) {
+                    card.querySelector('.section-mini-card-progress').textContent = 
+                        `${sectionStats.completed} / ${sectionStats.total}`;
+                    card.querySelector('.section-mini-card-bar-fill').style.width = 
+                        sectionStats.percentage + '%';
+                }
+            });
+
+            // Update section cards in syllabus
+            SYLLABUS_DATA.forEach(section => {
+                const sectionStats = getSectionStats(section);
+                const card = document.querySelector(`[data-section-card="${section.id}"]`);
+                if (card) {
+                    card.querySelector('.section-stats').textContent = 
+                        `${sectionStats.completed} / ${sectionStats.total} completed (${sectionStats.percentage}%)`;
+                    card.querySelector('.section-progress-bar-fill').style.width = 
+                        sectionStats.percentage + '%';
+                }
+            });
+
+            // Update progress view sections
+            updateProgressView();
+        }
+
+        function updateProgressView() {
+            const container = document.getElementById('progress-sections');
+            if (!container) return;
+
+            let html = '<div class="progress-section"><div class="progress-section-title">Section Progress</div>';
+
+            SYLLABUS_DATA.forEach(section => {
+                const stats = getSectionStats(section);
+                html += `<div class="progress-item">
+                    <span>Section ${section.id} — ${section.name}</span>
+                    <span class="progress-item-count"><strong>${stats.completed}</strong>/${stats.total}</span>
+                </div>`;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderDashboard() {
+            const container = document.getElementById('dashboard-sections');
+            if (!container) return;
+
+            container.innerHTML = SYLLABUS_DATA.map(section => {
+                const stats = getSectionStats(section);
+                return `
+                    <div class="section-mini-card" data-section-id="${section.id}" data-view="syllabus">
+                        <div class="section-mini-card-number">0${section.id}</div>
+                        <div class="section-mini-card-name">${section.name}</div>
+                        <div class="section-mini-card-progress">${stats.completed} / ${stats.total}</div>
+                        <div class="section-mini-card-bar">
+                            <div class="section-mini-card-bar-fill" style="width: ${stats.percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click handlers to navigate to syllabus
+            document.querySelectorAll('.section-mini-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const viewName = card.getAttribute('data-view');
+                    switchView(viewName);
+                });
+            });
+        }
+
+        function renderSyllabus() {
+            const container = document.getElementById('sections-container');
+            if (!container) return;
+
+            container.innerHTML = SYLLABUS_DATA.map(section => {
+                const stats = getSectionStats(section);
+                const topicsHtml = section.topics.map(topic => {
+                    const isCompleted = completedTopics.has(topic.id);
+                    return `
+                        <div class="topic-item ${isCompleted ? 'completed' : ''}">
+                            <input 
+                                type="checkbox" 
+                                class="topic-checkbox" 
+                                id="checkbox-${topic.id}"
+                                data-topic-id="${topic.id}"
+                                ${isCompleted ? 'checked' : ''}
+                                aria-label="Mark ${topic.name} as completed"
+                            >
+                            <label class="topic-label" for="checkbox-${topic.id}">${topic.name}</label>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="section-card" data-section-card="${section.id}">
+                        <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section-${section.id}">
+                            <div class="section-info">
+                                <div class="section-number">0${section.id}</div>
+                                <div class="section-name">${section.name}</div>
+                                <div class="section-stats">${stats.completed} / ${stats.total} completed (${stats.percentage}%)</div>
+                                <div class="section-progress-bar">
+                                    <div class="section-progress-bar-fill" style="width: ${stats.percentage}%"></div>
+                                </div>
+                            </div>
+                            <div class="section-chevron">▼</div>
+                        </div>
+                        <div class="section-topics" id="section-${section.id}">
+                            ${topicsHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add event listeners
+            attachSyllabusEventListeners();
+        }
+
+        function attachSyllabusEventListeners() {
+            // Section toggle
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.addEventListener('click', (e) => {
+                    const card = header.closest('.section-card');
+                    card.classList.toggle('expanded');
+                    header.setAttribute('aria-expanded', card.classList.contains('expanded'));
+                });
+
+                header.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        header.click();
+                    }
+                });
+            });
+
+            // Checkbox toggle
+            document.querySelectorAll('.topic-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const topicId = e.target.getAttribute('data-topic-id');
+                    if (e.target.checked) {
+                        completedTopics.add(topicId);
+                    } else {
+                        completedTopics.delete(topicId);
+                    }
+                    saveProgress();
+                    updateAllProgress();
+                    applyFilters();
+                });
+            });
+        }
+
+        // ============================================
+        // SEARCH AND FILTERS
+        // ============================================
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filter = currentFilter;
+            const sections = document.querySelectorAll('.section-card');
+            let hasVisibleTopics = false;
+
+            sections.forEach(section => {
+                const topics = section.querySelectorAll('.topic-item');
+                let visibleCount = 0;
+
+                topics.forEach(topic => {
+                    const topicText = topic.querySelector('.topic-label').textContent.toLowerCase();
+                    const topicId = topic.querySelector('.topic-checkbox').getAttribute('data-topic-id');
+                    const isCompleted = completedTopics.has(topicId);
+                    const matchesSearch = topicText.includes(query);
+
+                    let matches = true;
+                    if (filter === 'completed') matches = isCompleted;
+                    if (filter === 'pending') matches = !isCompleted;
+
+                    if (matchesSearch && matches) {
+                        topic.style.display = '';
+                        visibleCount++;
+                        hasVisibleTopics = true;
+                    } else {
+                        topic.style.display = 'none';
+                    }
+                });
+
+                if (visibleCount > 0) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            document.getElementById('search-empty').style.display = hasVisibleTopics ? 'none' : '';
+        }
+
+        // ============================================
+        // VIEW SWITCHING
+        // ============================================
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewName).classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+        }
+
+        // ============================================
+        // RESET FUNCTIONALITY
+        // ============================================
+        function resetProgress() {
+            completedTopics.clear();
+            saveProgress();
+            updateAllProgress();
+            renderSyllabus();
+            applyFilters();
+            closeModal();
+        }
+
+        function openModal() {
+            document.getElementById('reset-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('reset-modal').classList.remove('active');
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load data
+            loadProgress();
+
+            // Initial render
+            renderDashboard();
+            renderSyllabus();
+            updateProgressView();
+            updateAllProgress();
+
+            // Navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchView(btn.getAttribute('data-view'));
+                });
+            });
+
+            // Search
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                currentSearchQuery = e.target.value;
+                applyFilters();
+            });
+
+            // Filters
+            document.querySelectorAll('[data-filter]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.getAttribute('data-filter');
+                    applyFilters();
+                });
+            });
+
+            // Expand/Collapse all
+            document.getElementById('expand-all-btn').addEventListener('click', () => {
+                document.querySelectorAll('.section-card').forEach(card => {
+                    card.classList.add('expanded');
+                    card.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+                });
+            });
+
+            document.getElementById('collapse-all-btn').addEventListener('click', () => {
+                document.querySelectorAll('.section-card').forEach(card => {
+                    card.classList.remove('expanded');
+                    card.querySelector('.section-header').setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Reset modal
+            document.getElementById('reset-btn').addEventListener('click', openModal);
+            document.getElementById('modal-cancel').addEventListener('click', closeModal);
+            document.getElementById('modal-confirm').addEventListener('click', resetProgress);
+
+            document.getElementById('reset-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'reset-modal') closeModal();
+            });
+
+            // Register service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/JAM-PH-PROGRESS-TRACKER/service-worker.js').catch(err => {
+                    console.log('Service Worker registration failed:', err);
+                });
+            }
+        });
+
+        // Verify data structure on load
+        window.addEventListener('load', () => {
+            const stats = getStats();
+            console.log('✓ App Loaded');
+            console.log(`✓ Sections: ${SYLLABUS_DATA.length} (expected 7)`);
+            console.log(`✓ Topics: ${stats.total} (expected 124)`);
+            console.log(`✓ All topic IDs unique: ${SYLLABUS_DATA.reduce((sum, s) => sum + s.topics.length, 0) === stats.total}`);
+        });
+    </script>
+</body>
+</html>
