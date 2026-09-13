@@ -19,7 +19,7 @@
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='85' fill='%23482EE3'/><ellipse cx='256' cy='256' rx='105' ry='45' fill='none' stroke='white' stroke-width='14'/><ellipse cx='256' cy='256' rx='105' ry='45' fill='none' stroke='white' stroke-width='14' transform='rotate(60 256 256)'/><ellipse cx='256' cy='256' rx='105' ry='45' fill='none' stroke='white' stroke-width='14' transform='rotate(-60 256 256)'/><circle cx='256' cy='256' r='25' fill='white'/><circle cx='361' cy='256' r='13' fill='white'/><circle cx='203' cy='165' r='13' fill='white'/><circle cx='203' cy='347' r='13' fill='white'/></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "categories": [
