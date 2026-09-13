@@ -1,80 +1,169 @@
-const CACHE_NAME = 'jam-physics-v1';
+const CACHE_NAME = 'jam-physics-v2';
 const BASE_PATH = '/JAM-PH-PROGRESS-TRACKER';
-const urlsToCache = [
+
+const STATIC_ASSETS = [
   BASE_PATH + '/',
   BASE_PATH + '/index.html',
   BASE_PATH + '/manifest.json'
 ];
 
-// Install event - cache files
+// ================================
+// INSTALL
+// ================================
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache).catch(err => {
-        console.log('Cache addAll error:', err);
-        return Promise.resolve();
-      });
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(STATIC_ASSETS))
+      .catch(error => {
+        console.error('Service Worker install error:', error);
+      })
   );
+
+  // Activate new SW immediately
   self.skipWaiting();
 });
 
-// Activate event - cleanup old caches
+
+// ================================
+// ACTIVATE
+// ================================
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
+          return null;
         })
       );
+    }).then(() => {
+      // Take control of all open pages immediately
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
-// Fetch event - serve from cache, fallback to network
+
+// ================================
+// FETCH
+// ================================
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests
+
+  // Only handle GET requests
   if (event.request.method !== 'GET') {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      // Cache hit - return response
-      if (response) {
-        return response;
-      }
+  const request = event.request;
+  const url = new URL(request.url);
 
-      return fetch(event.request).then(response => {
-        // Check if we received a valid response
-        if (!response || response.status !== 200 || response.type === 'error') {
-          return response;
+  // Only handle same-origin requests
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  /*
+   * HTML + Manifest:
+   * NETWORK FIRST
+   *
+   * This is the important part.
+   * Browser will try GitHub first, so updates
+   * are not permanently stuck in the old cache.
+   */
+  const isHTML =
+    request.mode === 'navigate' ||
+    request.destination === 'document' ||
+    url.pathname.endsWith('.html');
+
+  const isManifest =
+    url.pathname.endsWith('/manifest.json') ||
+    url.pathname.endsWith('manifest.json');
+
+  if (isHTML || isManifest) {
+    event.respondWith(
+      fetch(request)
+        .then(networkResponse => {
+
+          if (
+            !networkResponse ||
+            networkResponse.status !== 200
+          ) {
+            throw new Error('Network response invalid');
+          }
+
+          // Save latest version to cache
+          const responseClone = networkResponse.clone();
+
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, responseClone);
+          });
+
+          return networkResponse;
+        })
+        .catch(() => {
+          // Offline fallback
+          return caches.match(request);
+        })
+    );
+
+    return;
+  }
+
+
+  /*
+   * Other files:
+   * CACHE FIRST
+   *
+   * Good for CSS, JS, fonts, etc.
+   */
+  event.respondWith(
+    caches.match(request)
+      .then(cachedResponse => {
+
+        if (cachedResponse) {
+          return cachedResponse;
         }
 
-        // Clone the response
-        const responseToCache = response.clone();
+        return fetch(request)
+          .then(networkResponse => {
 
-        // Cache the new response
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
+            if (
+              !networkResponse ||
+              networkResponse.status !== 200
+            ) {
+              return networkResponse;
+            }
 
-        return response;
-      }).catch(() => {
-        // Offline fallback - return cached response if available
-        return caches.match(event.request);
-      });
-    })
+            const responseClone = networkResponse.clone();
+
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, responseClone);
+            });
+
+            return networkResponse;
+          })
+          .catch(() => {
+            return caches.match(request);
+          });
+      })
   );
 });
 
-// Handle messages from clients
+
+// ================================
+// MESSAGE HANDLER
+// ================================
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+
+  if (!event.data) {
+    return;
+  }
+
+  if (event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
+
 });
