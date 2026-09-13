@@ -7,5 +7,49 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#482EE3",
-  "orientation": "portrait-primary"
+  "orientation": "portrait-primary",
+
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%23482EE3'/><path d='M96 48 C125 48 146 67 146 96 C146 125 125 144 96 144 C67 144 46 125 46 96 C46 67 67 48 96 48Z' fill='none' stroke='white' stroke-width='4' stroke-dasharray='9 7'/><path d='M58 70 C82 49 122 55 140 80 C157 104 141 132 113 142 C83 153 53 137 50 108' fill='none' stroke='white' stroke-width='4'/><path d='M134 70 C110 49 70 55 52 80 C35 104 51 132 79 142 C109 153 139 137 142 108' fill='none' stroke='white' stroke-width='4'/><path d='M64 126 L96 60 L128 126 Z' fill='none' stroke='white' stroke-width='3' stroke-dasharray='7 6'/><circle cx='96' cy='60' r='11' fill='white'/><circle cx='64' cy='126' r='10' fill='white'/><circle cx='128' cy='126' r='10' fill='white'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='85' fill='%23482EE3'/><path d='M256 128 C333 128 389 179 389 256 C389 333 333 384 256 384 C179 384 123 333 123 256 C123 179 179 128 256 128Z' fill='none' stroke='white' stroke-width='10' stroke-dasharray='24 18'/><path d='M155 187 C219 131 325 147 374 213 C419 274 376 350 302 377 C223 406 142 364 134 297' fill='none' stroke='white' stroke-width='10'/><path d='M357 187 C293 131 187 147 138 213 C93 274 136 350 210 377 C289 406 370 364 378 297' fill='none' stroke='white' stroke-width='10'/><path d='M171 336 L256 160 L341 336 Z' fill='none' stroke='white' stroke-width='8' stroke-dasharray='18 15'/><circle cx='256' cy='160' r='29' fill='white'/><circle cx='171' cy='336' r='27' fill='white'/><circle cx='341' cy='336' r='27' fill='white'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+
+  "categories": [
+    "education",
+    "productivity"
+  ],
+
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23482EE3' width='540' height='200'/><rect fill='white' width='540' height='520' y='200'/><text x='270' y='100' font-size='32' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>JAM Physics</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "View Syllabus",
+      "short_name": "Syllabus",
+      "description": "View complete syllabus",
+      "url": "./index.html?view=syllabus"
+    },
+    {
+      "name": "Check Progress",
+      "short_name": "Progress",
+      "description": "View your progress",
+      "url": "./index.html?view=progress"
+    }
+  ]
 }
