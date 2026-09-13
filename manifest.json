@@ -1,0 +1,65 @@
+{
+  "name": "IIT JAM 2027 Physics - Syllabus Tracker",
+  "short_name": "JAM Physics",
+  "description": "Complete IIT JAM 2027 Physics syllabus tracker with progress tracking and offline support",
+  "start_url": "/JAM-PH-PROGRESS-TRACKER/index.html",
+  "scope": "/JAM-PH-PROGRESS-TRACKER/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#482EE3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%23482EE3'/><ellipse cx='96' cy='96' rx='66' ry='28' fill='none' stroke='white' stroke-width='6'/><ellipse cx='96' cy='96' rx='66' ry='28' fill='none' stroke='white' stroke-width='6' transform='rotate(60 96 96)'/><ellipse cx='96' cy='96' rx='66' ry='28' fill='none' stroke='white' stroke-width='6' transform='rotate(-60 96 96)'/><circle cx='96' cy='96' r='16' fill='white'/><circle cx='162' cy='96' r='8' fill='white'/><circle cx='62' cy='40' r='8' fill='white'/><circle cx='62' cy='152' r='8' fill='white'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='85' fill='%23482EE3'/><ellipse cx='256' cy='256' rx='176' ry='75' fill='none' stroke='white' stroke-width='16'/><ellipse cx='256' cy='256' rx='176' ry='75' fill='none' stroke='white' stroke-width='16' transform='rotate(60 256 256)'/><ellipse cx='256' cy='256' rx='176' ry='75' fill='none' stroke='white' stroke-width='16' transform='rotate(-60 256 256)'/><circle cx='256' cy='256' r='43' fill='white'/><circle cx='432' cy='256' r='21' fill='white'/><circle cx='165' cy='106' r='21' fill='white'/><circle cx='165' cy='406' r='21' fill='white'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23482EE3' width='540' height='200'/><rect fill='white' width='540' height='520' y='200'/><text x='270' y='100' font-size='32' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>JAM Physics ⚛️</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Syllabus",
+      "short_name": "Syllabus",
+      "description": "View complete syllabus",
+      "url": "/JAM-PH-PROGRESS-TRACKER/index.html?view=syllabus",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%236A3FC7' width='96' height='96' rx='20'/><text x='48' y='48' font-size='50' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>📚</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Check Progress",
+      "short_name": "Progress",
+      "description": "View your progress",
+      "url": "/JAM-PH-PROGRESS-TRACKER/index.html?view=progress",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23482EE3' width='96' height='96' rx='20'/><text x='48' y='48' font-size='50' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>📊</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
