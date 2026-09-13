@@ -1341,11 +1341,60 @@
                 if (e.target.id === 'reset-modal') closeModal();
             });
 
-            // Register service worker
+            // ============================================
+            // SERVICE WORKER
+            // ============================================
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./service-worker.js').catch(err => {
-                    console.log('Service Worker registration failed:', err);
+
+                window.addEventListener('load', () => {
+
+                    navigator.serviceWorker.register('./service-worker.js')
+                        .then(registration => {
+
+                            console.log('✓ Service Worker registered');
+
+                            // Check for a newer Service Worker version
+                            registration.update();
+
+                            // Activate a waiting worker immediately
+                            if (registration.waiting) {
+                                registration.waiting.postMessage({
+                                    type: 'SKIP_WAITING'
+                                });
+                            }
+
+                            registration.addEventListener('updatefound', () => {
+
+                                const newWorker = registration.installing;
+
+                                if (!newWorker) return;
+
+                                newWorker.addEventListener('statechange', () => {
+
+                                    if (
+                                        newWorker.state === 'installed' &&
+                                        navigator.serviceWorker.controller
+                                    ) {
+                                        console.log('✓ New version available');
+
+                                        newWorker.postMessage({
+                                            type: 'SKIP_WAITING'
+                                        });
+                                    }
+
+                                });
+                            });
+
+                        })
+                        .catch(error => {
+                            console.error(
+                                'Service Worker registration failed:',
+                                error
+                            );
+                        });
+
                 });
+
             }
         });
 
